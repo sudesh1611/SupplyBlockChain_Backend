@@ -20,6 +20,8 @@ namespace SupplyBlockChain_Backend
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseUrls("http://*:5040")
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+            //Scope was interfering in Database DI in Job
+            .UseDefaultServiceProvider(options => options.ValidateScopes = false);
     }
 }

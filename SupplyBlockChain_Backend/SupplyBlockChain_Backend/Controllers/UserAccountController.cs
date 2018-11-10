@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using SupplyBlockChain_Backend.Data;
 using SupplyBlockChain_Backend.Models;
@@ -14,9 +15,28 @@ namespace SupplyBlockChain_Backend.Controllers
     public class UserAccountController : ControllerBase
     {
         private readonly UserDbContext _userContext;
-        public UserAccountController(UserDbContext userDbContext)
+        private readonly IConfiguration configuration;
+        public UserAccountController(UserDbContext userDbContext, IConfiguration cfg)
         {
             _userContext = userDbContext;
+            configuration = cfg;
+            var user = userDbContext.UserAccounts.SingleOrDefault(m => m.ID == 1);
+            //If there is no Admin Account. Create one using settings from appsettings file
+            if(user==null)
+            {
+                var adminUser = new User()
+                {
+                    FullName = cfg.GetConnectionString("DefaultFullName"),
+                    UserName = cfg.GetConnectionString("DefaultUserName"),
+                    Password = cfg.GetConnectionString("DefaultPassword"),
+                    ConfirmPassword = cfg.GetConnectionString("DefaultPassword"),
+                    EmailID = cfg.GetConnectionString("DefaultEmailID"),
+                    AssociatedProductTypes = JsonConvert.SerializeObject(new List<string>()),
+                    AccessRights = JsonConvert.SerializeObject(new List<string>() { "Admin" })
+                };
+                userDbContext.UserAccounts.Add(adminUser);
+                userDbContext.SaveChanges();
+            }
         }
 
         [HttpPost]
@@ -28,7 +48,7 @@ namespace SupplyBlockChain_Backend.Controllers
                 if(adminUser.Password==password)
                 {
                     var AccessRights = JsonConvert.DeserializeObject<List<string>>(adminUser.AccessRights);
-                    if(AccessRights.Contains("CreateAccount"))
+                    if(AccessRights.Contains("CreateAccount") || AccessRights.Contains("Admin"))
                     {
                         var newUser = JsonConvert.DeserializeObject<User>(user);
                         foreach (var item in _userContext.UserAccounts)
@@ -56,7 +76,7 @@ namespace SupplyBlockChain_Backend.Controllers
                 if (adminUser.Password == password)
                 {
                     var AccessRights = JsonConvert.DeserializeObject<List<string>>(adminUser.AccessRights);
-                    if (AccessRights.Contains("CreateAccount"))
+                    if (AccessRights.Contains("CreateAccount") || AccessRights.Contains("Admin"))
                     {
                         var oldUser = JsonConvert.DeserializeObject<User>(user);
                         _userContext.UserAccounts.Update(oldUser);

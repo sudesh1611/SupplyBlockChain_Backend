@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SupplyBlockChain_Backend.Migrations
+namespace SupplyBlockChain_Backend.Migrations.UserDb
 {
-    public partial class InitialMigration : Migration
+    public partial class UserMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

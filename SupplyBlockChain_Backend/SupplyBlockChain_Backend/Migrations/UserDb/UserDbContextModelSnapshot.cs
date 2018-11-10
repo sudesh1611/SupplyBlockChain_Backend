@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupplyBlockChain_Backend.Data;
 
-namespace SupplyBlockChain_Backend.Migrations
+namespace SupplyBlockChain_Backend.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
     partial class UserDbContextModelSnapshot : ModelSnapshot

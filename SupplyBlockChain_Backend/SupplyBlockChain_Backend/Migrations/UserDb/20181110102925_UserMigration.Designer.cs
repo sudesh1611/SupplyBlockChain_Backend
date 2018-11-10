@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupplyBlockChain_Backend.Data;
 
-namespace SupplyBlockChain_Backend.Migrations
+namespace SupplyBlockChain_Backend.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20181016121237_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20181110102925_UserMigration")]
+    partial class UserMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

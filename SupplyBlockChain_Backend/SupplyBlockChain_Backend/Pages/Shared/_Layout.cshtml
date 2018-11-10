@@ -26,22 +26,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">SupplyBlockChain_Backend</a>
+                <a asp-page="/Index" class="navbar-brand">Supply BlockChain</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
+                    @*<li><a asp-page="/Index">Home</a></li>*@
                 </ul>
             </div>
         </div>
     </nav>
 
-    <partial name="_CookieConsentPartial" />
-
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-center">
             <p>&copy; @DateTime.Now.Year.ToString() - Supply BlockChain</p>
         </footer>
     </div>
