@@ -42,7 +42,7 @@ namespace SupplyBlockChain_Backend.Models
             ProcessDone = processDone;
             ProcessDoneBy = processDoneBy;
             CostOfProcess = costOfProcess;
-            latitude = Latitude;
+            Latitude = latitude;
             Longitude = longitude;
             var now = DateTime.Now;
             TransactionTimeStamp = now.ToLongDateString() + " " + now.ToLongTimeString();

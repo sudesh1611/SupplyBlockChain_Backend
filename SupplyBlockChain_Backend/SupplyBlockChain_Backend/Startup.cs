@@ -57,7 +57,7 @@ namespace SupplyBlockChain_Backend
                 .StartNow()
                 .WithSimpleSchedule
                  (s =>
-                    s.WithInterval(TimeSpan.FromMinutes(15))
+                    s.WithInterval(TimeSpan.FromMinutes(20))
                     .RepeatForever()
                  )
                  .Build();

@@ -50,12 +50,13 @@ namespace SupplyBlockChain_Backend.Controllers
                     var AccessRights = JsonConvert.DeserializeObject<List<string>>(adminUser.AccessRights);
                     if(AccessRights.Contains("CreateAccount") || AccessRights.Contains("Admin"))
                     {
+                        var Accounts = await _userContext.UserAccounts.ToListAsync();
                         var newUser = JsonConvert.DeserializeObject<User>(user);
-                        foreach (var item in _userContext.UserAccounts)
+                        foreach (var item in Accounts)
                         {
                             if (item.UserName == newUser.UserName)
                             {
-                                return "False";
+                                return "UserName";
                             }
                         }
                         await _userContext.UserAccounts.AddAsync(newUser);
