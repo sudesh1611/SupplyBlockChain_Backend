@@ -2,7 +2,7 @@
 
 namespace SupplyBlockChain_Backend.Migrations.UserDb
 {
-    public partial class UserMigration : Migration
+    public partial class ThirdMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -16,12 +16,14 @@ namespace SupplyBlockChain_Backend.Controllers
     public class BlockChainController : ControllerBase
     {
         private readonly UserDbContext _userContext;
+        private readonly ProductInfoDbContext _productInfoDbContext;
         private BlockChain SupplyBlockChain;
         private readonly BlockChainsDbContext blockChainsDbContext;
 
-        public BlockChainController(IOptions<BlockChain> blockChain, UserDbContext userDbContext, BlockChainsDbContext sdb)
+        public BlockChainController(IOptions<BlockChain> blockChain, UserDbContext userDbContext, BlockChainsDbContext sdb, ProductInfoDbContext pdb)
         {
             _userContext = userDbContext;
+            _productInfoDbContext = pdb;
             blockChainsDbContext = sdb;
             SupplyBlockChain = blockChain.Value;
         }
@@ -91,6 +93,37 @@ namespace SupplyBlockChain_Backend.Controllers
                     var AccessRights = JsonConvert.DeserializeObject<List<string>>(User.AccessRights);
                     if (AccessRights.Contains("CreateTransaction") || AccessRights.Contains("Admin"))
                     {
+                        Transaction newTransaction = JsonConvert.DeserializeObject<Transaction>(transaction);
+                        SupplyBlockChain.CreateTransaction(newTransaction);
+                        return "True";
+                    }
+                }
+            }
+            return "False";
+        }
+
+        [HttpPost]
+        public async Task<string> CreateFirstTransaction(string productInfo, string transaction, string userName, string password)
+        {
+            var User = await _userContext.UserAccounts.FirstOrDefaultAsync(m => m.UserName == userName);
+            if (User != null)
+            {
+                if (User.Password == password)
+                {
+                    var AccessRights = JsonConvert.DeserializeObject<List<string>>(User.AccessRights);
+                    if (AccessRights.Contains("CreateTransaction") || AccessRights.Contains("Admin"))
+                    {
+                        var pro = JsonConvert.DeserializeObject<ProductInfo>(productInfo);
+                        ProductInfo newProduct = new ProductInfo()
+                        {
+                            ProductName = pro.ProductName,
+                            ProductType = pro.ProductType,
+                            ProductCreator = User.ID,
+                            ProductID = pro.ProductID,
+                            CreationDate = pro.CreationDate
+                        };
+                        await _productInfoDbContext.ProductsInfos.AddAsync(newProduct);
+                        await _productInfoDbContext.SaveChangesAsync();
                         Transaction newTransaction = JsonConvert.DeserializeObject<Transaction>(transaction);
                         SupplyBlockChain.CreateTransaction(newTransaction);
                         return "True";

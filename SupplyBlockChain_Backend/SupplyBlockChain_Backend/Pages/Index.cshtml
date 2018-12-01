@@ -2,17 +2,20 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Layout = "IndexLayout";
 }
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br />
-<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
-<h4 class="text-center text-capitalize" style="color:lightgray;">This Page is under construction!!</h4>
-<br /><br />
-          <div class="text-center">
-              <button type="button" class="btn btn-primary" formtarget="_blank" onclick="location.href='https://github.com/sudesh1611/SupplyBlockChain_Backend'"><i class="fa fa-fw fa-github"></i> View Source Code</button>
-          </div>
-          <br />
-          <div class="text-center">
-              <a href="https://www.sudeshkumar.me/SupplyBlockChain.apk" target="_blank" download="Supply BlockChain.apk" title="Download Supply BlockChain for Android" class="btn btn-primary">Download Supply BlockChain Android App</a>
-          </div>
 <br />
+<div class="row">
+     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+         <h2 class="h2 text-center"><strong>Supply BlockChain</strong></h2>
+         <h2><a id="Overview_3"></a><strong></strong></h2>
+         <p class="text-justify"><strong>Supply BlockChain</strong> is a system that implements a manufacturing supply chain in the form of a blockchain. All stages involved in the life cycle of a product from manufacturing till it reaches consumer are stored on the blockchain. This system consists of two modules:</p>
+         <ul class="text-justify">
+             <li>Backend Module in the form of ASP.NET Core WebApp</li>
+             <li>Frontend Module in the form of a Xamarin.Forms App</li>
+         </ul>
+         <p class="text-justify">Backend module creates and manages Supply BlockChain and all types of operations on Supply BlockChain are performed in this Backend module. Backend Module is implemented in ASP.NET Core WebApp which exposes REST APIs to perform different operations on Supply BlockChain through Frontend Mobile App. This WebApp is the backend module. For all details <strong><a asp-page="/About" style="color:#2c3e50;">click here</a></strong> or go to About section.</p>
+         <p class="text-justify">Frontend module consists of a Mobile App built in Xamarin.Forms which provides the interface to interact with the blockchain at backend in a user-friendly manner. This App consumes APIs exposed by Backend WebApp and performs various operations.  For all details <strong><a asp-page="/About" style="color:#2c3e50;">click here</a></strong> or go to About section.</p>
+         <p class="text-center"><strong><a href="https://www.sudeshkumar.me/SupplyBlockChain.apk" style="color:#2c3e50;">Click here to download Mobile App for Android</a></strong></p>
+     </div>
+</div>

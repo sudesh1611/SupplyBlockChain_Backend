@@ -8,8 +8,8 @@ using SupplyBlockChain_Backend.Data;
 namespace SupplyBlockChain_Backend.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20181110102925_UserMigration")]
-    partial class UserMigration
+    [Migration("20181201081520_ThirdMigration")]
+    partial class ThirdMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

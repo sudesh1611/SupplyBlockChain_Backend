@@ -2,7 +2,7 @@
 
 namespace SupplyBlockChain_Backend.Migrations
 {
-    public partial class BlockChainMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

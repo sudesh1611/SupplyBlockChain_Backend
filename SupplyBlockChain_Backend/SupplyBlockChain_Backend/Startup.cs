@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
@@ -34,8 +36,9 @@ namespace SupplyBlockChain_Backend
 
             //Adding Logging 
             services.AddLogging();
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddDbContext<UserDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ProductInfoDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<BlockChainsDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             //Adding Background Scheduler to start miner and verifiers every 15 minutes
@@ -57,7 +60,7 @@ namespace SupplyBlockChain_Backend
                 .StartNow()
                 .WithSimpleSchedule
                  (s =>
-                    s.WithInterval(TimeSpan.FromMinutes(20))
+                    s.WithInterval(TimeSpan.FromMinutes(40))
                     .RepeatForever()
                  )
                  .Build();

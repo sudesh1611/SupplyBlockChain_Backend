@@ -1,0 +1,84 @@
+﻿@page
+@model SupplyBlockChain_Backend.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+    Layout = "IndexLayout";
+}
+
+<br />
+<h2 class="h2 text-center"></a><strong>Supply BlockChain</strong></h2>
+<h2><a id="Overview_3"></a><strong>Overview</strong></h2>
+<p><strong>Supply BlockChain</strong> is a system that implements a manufacturing supply chain in the form of a blockchain. All stages involved in the life cycle of a product from manufacturing till it reaches consumer are stored on the blockchain. This system consists of two modules:</p>
+<ul>
+    <li>Backend Module in the form of ASP.NET Core WebApp</li>
+    <li>Frontend Module in the form of a Xamarin.Forms App</li>
+</ul>
+<p>Backend module creates and manages Supply BlockChain and all types of operations on Supply BlockChain are performed in this Backend module. Backend Module is implemented in ASP.NET Core WebApp which exposes REST APIs to perform different operations on Supply BlockChain through Frontend Mobile App.</p>
+<p>Frontend module consists of a Mobile App built in Xamarin.Forms which provides the interface to interact with the blockchain at backend in a user-friendly manner. This App consumes APIs exposed by Backend WebApp and performs various operations.</p>
+<h2><a id="BackEnd_Module_15"></a><strong>BackEnd Module</strong></h2>
+<p>The ASP.NET WebApp aka Backend creates and manages the Supply BlockChain. This WebApp also contains one Block Miner and Three Block Verifiers. Every 20 minutes, a new block is mined by the Miner and verified by the three Verifiers. Following are the operations that can be performed by BackEnd Module:</p>
+<ul>
+    <li>Create product transactions and push them to the pending transaction queue for mining.</li>
+    <li>Mine pending transactions every 20 minutes.</li>
+    <li>After mining, get block verifed by verifiers and if approved add it to the Supply BlockChain.</li>
+    <li>Along with Main Supply BlockChain, maintain blockChains of verifiers also.</li>
+    <li>Create/Modify User accounts with specified access levels.</li>
+    <li>Provide Supply BlockChain to user whenever asked for.</li>
+    <li>Provide interface for user to print QrCode of all products he/she created.</li>
+</ul>
+<p><strong>Visit Backend Website:</strong> <a href="http://supplyblockchain.sudeshkumar.me">http://supplyblockchain.sudeshkumar.me</a></p>
+<h2><a id="FrontEnd_Module_30"></a><strong>FrontEnd Module</strong></h2>
+<p>The Xamarin.Forms App aka FrontEnd Module provides interface to perform operations on SupplyChain depending on Access Level of users. It can’t directly access the Supply BlockChain but makes API calls to the Backend WebApp and then Backend WebApp performs actions on Supply BlockChain. Depending on Access levels of a user, App can perform following tasks:</p>
+<ul>
+    <li>Generate a unique ID of product in the form of QrCode to identify this product in Supply BlockChain when the product is created for the first time.</li>
+    <li>Scan the QrCode and get product’s Unique ID whenever a transaction is created about this product.</li>
+    <li>View all the transactions performed on a product till now by scanning the QrCode.</li>
+    <li>At the time of transaction creation, provide the GPS locations of mobile device and attach them with transaction.</li>
+    <li>Provide interface to Create/Modify/Login user account.</li>
+</ul>
+<p><strong>Download Android Application:</strong> <a href="https://www.sudeshkumar.me/SupplyBlockChain.apk">SupplyBlockChain.apk</a></p>
+<h2><a id="Working_Details_43"></a><strong>Working Details</strong></h2>
+<p><strong>Supply BlockChain specifications</strong></p>
+<ul>
+    <li>A new block is mined every 20 minutes.</li>
+    <li>For Proof of Work,at present, miner have to mine block such that Hash of that block starts with 5 zeros.</li>
+    <li>The difficulty of mining (i.e number of starting zeros of a block Hash) block can be increased by admin, if required.</li>
+    <li>At present there is one Block Miner and Three Verifiers.</li>
+    <li>All verifiers have their own independent Supply BlockChains and are identical to Main Supply BlockChain.</li>
+    <li>At the time of transaction creation, app also records the location at which transaction is made.</li>
+    <li>
+        There are Four Access Levels.
+        <ul>
+            <li><strong>Admin:</strong> Create/Modify User Account, Change difficulty of block mining, Create transaction, View a product’s Transactions by scanning QrCode.</li>
+            <li><strong>Create Transaction:</strong> Create Transaction, View a product’s Transaction by scanning QrCode.</li>
+            <li><strong>Create Account:</strong> Create/Modify User Account, View a product’s Transactions by scanning QrCode.</li>
+            <li>When no access level is specified, user can only view a product’s Transactions by scanning QrCode.</li>
+        </ul>
+    </li>
+</ul>
+<p><strong>Create New Product’s Transaction</strong></p>
+<p>New Product’s transaction means that the product hasn’t been given a unique ID. If a user have Create Transaction Right then only user can create transaction.</p>
+<ul>
+    <li>Enter the product details in Mobile App by going to Create Transaction -&gt; New Product.</li>
+    <li>After entering details push “Create Product” button, it will generate a unique ID for product in the form of a QrCode.</li>
+    <li>Take print of this QrCode either from mobile screenshot or from Website and attach it with product.</li>
+    <li>Next time, whenever a new transaction is made on this product, QrCode is to be scanned.</li>
+</ul>
+<p><strong>Create Old Product’s Transaction</strong></p>
+<p>Old Product’s transaction means that the product already has been given a unique ID. If a user have Create Transaction access then only user can create transaction.</p>
+<ul>
+    <li>Scan product’s QrCode by going to Create Transaction -&gt; Scan QrCode.</li>
+    <li>Fill the information regarding the process done on product and push the “Create Transaction” button.</li>
+    <li>If the transaction is commited successfuly, a success message will be displayed. This transaction will be visible on Supply BlockChain only after next mining process occurs.</li>
+</ul>
+<p><strong>View Product’s Transaction</strong></p>
+<p>You can view all the transactions performed on a product by going to Scan QrCode on main screen.</p>
+<p><strong>Create Account</strong></p>
+<p>A user who have Right to create account can create account by going to Create Account and filling all details related to user being created. At the time of creation access rights to user are given.</p>
+<p><strong>View BlockChain</strong></p>
+<p>Admin can view Supply BlockChain in raw form by going to View BlockChain.</p>
+<h2><a id="Links_89"></a><strong>Links</strong></h2>
+<p><strong>Download Android Application:</strong> <a href="https://www.sudeshkumar.me/SupplyBlockChain.apk">SupplyBlockChain.apk</a></p>
+<p><em>Note*: When for the first time, you give Android Application access to camera, scanner might not open. If this happens, close application and remove it from background also.Then, start application again.</em></p>
+<p><strong>Contact at</strong> <a href="mailto:sudesh1611@gmail.com">sudesh1611@gmail.com</a></p>
+

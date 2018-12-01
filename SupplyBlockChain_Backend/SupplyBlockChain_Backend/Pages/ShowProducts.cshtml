@@ -1,0 +1,32 @@
+﻿@page
+@model SupplyBlockChain_Backend.Pages.ShowProductsModel
+@{
+    ViewData["Title"] = "MyProducts";
+}
+
+<br />
+<div class="row">
+    <h3 class="text-left" style="font-family:'Comic Sans MS';">Your Products</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Creation Date</th>
+            <th>Product ID</th>
+        </tr>
+        @foreach (var item in Model.MyProducts)
+        {
+            <tr>
+                <th><a asp-page="/GenerateQrCode" asp-route-name="@item.ProductName" asp-route-type="@item.ProductType" asp-route-ID="@item.ProductID">@item.ProductName</a></th>
+                <th><a asp-page="/GenerateQrCode" asp-route-name="@item.ProductName" asp-route-type="@item.ProductType" asp-route-ID="@item.ProductID">@item.ProductType</a></th>
+                <th><a asp-page="/GenerateQrCode" asp-route-name="@item.ProductName" asp-route-type="@item.ProductType" asp-route-ID="@item.ProductID">@(item.Time + " - " + item.Date)</a></th>
+                <th><a asp-page="/GenerateQrCode" asp-route-name="@item.ProductName" asp-route-type="@item.ProductType" asp-route-ID="@item.ProductID">@item.ProductID</a></th>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

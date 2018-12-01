@@ -1,0 +1,27 @@
+﻿@page
+@model SupplyBlockChain_Backend.Pages.GenerateQrCodeModel
+@{
+    ViewData["Title"] = Model.ProductName + " - " + Model.ProductType;
+    Layout = "MinimalLayout";
+}
+
+
+@section JavaScripts {
+    <script>
+        function myFunction() {
+            window.print();
+        }
+    </script>
+}
+
+<h2 class="text-center">@(Model.ProductName + " - " + Model.ProductType)</h2>
+<br />
+<div class="text-center">
+    <qrcode alt="QrCode" content="@Model.ProductID" />
+    <br />
+    <br />
+    <button class="btn btn-default" onclick="myFunction()">Print QrCode</button>
+    <br />
+    <a class="btn-default " asp-page="/ShowProducts">Go Back</a>
+</div>
+
