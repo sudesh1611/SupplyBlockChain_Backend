@@ -25,7 +25,7 @@ The ASP.NET WebApp aka Backend creates and manages the Supply BlockChain. This W
 - Provide Supply BlockChain to user whenever asked for.
 - Provide interface for user to print QrCode of all products he/she created.
 
-**Visit Backend Website:** <http://supplyblockchain.sudeshkumar.me>
+**More details here:** <https://sudeshkumar.me/SupplyBlockChain.html>
 
 
 ## **FrontEnd Module**
@@ -37,8 +37,6 @@ The Xamarin.Forms App aka FrontEnd Module provides interface to perform operatio
 - View all the transactions performed on a product till now by scanning the QrCode.
 - At the time of transaction creation, provide the GPS locations of mobile device and attach them with transaction.
 - Provide interface to Create/Modify/Login user account.
-
-**Download Android Application:** [SupplyBlockChain.apk](https://www.sudeshkumar.me/SupplyBlockChain.apk)
 
 **View FrontEnd Source Code:** <https://github.com/sudesh1611/SupplyBlockChainApp>
 
@@ -90,10 +88,6 @@ Admin can view Supply BlockChain in raw form by going to View BlockChain.
 
 
 ## **Links**
-
-**Download Android Application:** [SupplyBlockChain.apk](https://www.sudeshkumar.me/SupplyBlockChain.apk)
-
-*Note\*: When for the first time, you give Android Application access to camera, scanner might not open. If this happens, close application and remove it from background also.Then, start application again.*
 
 **View my other projects:** <https://github.com/sudesh1611>
 
